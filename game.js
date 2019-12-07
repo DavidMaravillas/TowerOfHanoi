@@ -47,7 +47,7 @@ class Towers{
     getMove(){
         console.log(this.rods)
         this.gameWon()
-        if(this.gameWon()) return this.results()
+        if(this.gameWon()|| this.moveCount=== 12) return this.results()
             rl.question(`What rod would you like to move?`, (oldRod) => {
                 rl.question("To which new rod would you like to move it to?", (newRod)=>{
                     this.move(oldRod.toUpperCase(),newRod.toUpperCase());
@@ -58,8 +58,14 @@ class Towers{
         }
         
         results(){
-            console.log(`Player Won with ${this.moveCount} moves, THE BEST MOVES ARE 7 Steps`)
-            rl.close()
+            if(this.gameWon()){
+                console.log(`Player Won with ${this.moveCount} moves, THE BEST MOVES ARE 7 Steps`)
+                rl.close()
+            } else {
+                console.log(`Player lost with ${this.moveCount} moves, THE BEST MOVES ARE 7 Steps`)
+                rl.close()
+
+            }
         }
         
     }
