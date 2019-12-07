@@ -48,20 +48,17 @@ class Towers{
         console.log(this.rods)
         this.gameWon()
         if(this.gameWon()) return this.results()
-            rl.question(`${this.rods}What rod would you like to move?`, (oldRod)=>{
+            rl.question(`What rod would you like to move?`, (oldRod) => {
                 rl.question("To which new rod would you like to move it to?", (newRod)=>{
-                    this.move(oldRod,newRod);
+                    this.move(oldRod.toUpperCase(),newRod.toUpperCase());
                     this.getMove()
                 // rl.close();
-                }
-        
-            )
-            }
-            )
+                })
+            })
         }
         
         results(){
-            console.log(`Player Won with ${this.moveCount}`)
+            console.log(`Player Won with ${this.moveCount} moves, THE BEST MOVES ARE 7 Steps`)
             rl.close()
         }
         
