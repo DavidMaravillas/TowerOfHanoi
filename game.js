@@ -37,31 +37,38 @@ class Towers{
 
     }
     gameWon(){
-        if(this.rods["B"].length === 3 ||this.rods["C"].length === 3){
-            return true
-        } else {
-            return false
-        }
+        if(this.rods["B"].length === 3 || this.rods["C"].length === 3){
+            this.gameOver = true
+        } 
     }
 
+
     getMove(){
-        console.log(this.rods)
+        rl.question(`${this.rods}What rod would you like to move?`, (oldRod)=>{
+            rl.question("To which new rod would you like to move it to?", (newRod)=>{
+                this.move(oldRod,newRod);
+                console.log(this.rods)
+            rl.close();
+            }
+    
+        )}
+        )
+
+        return this.getMove()
+
+    }
+    play(){
+        this.setDiscs()
         this.gameWon()
-        if(!this.gameWon()) {
-             return this.results()
-        } else {
-            
-            rl.question(`${this.rods}What rod would you like to move?`, (oldRod)=>{
-                rl.question("To which new rod would you like to move it to?", (newRod)=>{
-                    this.move(oldRod,newRod);
-                    console.log(this.rods)
-                // rl.close();
-                }
         
-            )}
-            )
-        }
+        console.log(this.rods)
+        
+        
+        
          this.getMove()
+        //  this.plsay()
+        if(!this.gameOver) return this.results()
+    
     }
 
     results(){
@@ -78,9 +85,10 @@ class Towers{
 
 let towers = new Towers()
 
-// towers.play()
-towers.setDiscs()
-towers.getMove()
+// console.log(towers.gameWon())
+towers.play()
+// towers.setDiscs()
+// towers.getMove()
 
 // console.log(towers.rods)
 // towers.move("A","C")
