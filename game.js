@@ -6,14 +6,14 @@ const rl = readline.createInterface({
 
 class Towers{
     constructor(){
-        this.rods = {A:[],B:[],C:[]}
+        this.rods = {A:[3,2,1],B:[],C:[]}
         this.moveCount = 0
         this.gameOver = false
     }
 
-    setDiscs(){
-        this.rods.A = [3,2,1]
-    }
+    // setDiscs(){
+    //     this.rods.A = [3,2,1]
+    // }
     isValidMove(oldRod,newRod){
         if(!this.rods[oldRod].length){
             return false
@@ -47,53 +47,59 @@ class Towers{
     getMove(){
         console.log(this.rods)
         this.gameWon()
-        if(!this.gameWon()) {
-             return this.results()
-        } else {
-            
+        if(this.gameWon()) return this.results()
             rl.question(`${this.rods}What rod would you like to move?`, (oldRod)=>{
                 rl.question("To which new rod would you like to move it to?", (newRod)=>{
                     this.move(oldRod,newRod);
-                    console.log(this.rods)
+                    this.getMove()
                 // rl.close();
                 }
         
-            )}
+            )
+            }
             )
         }
-         this.getMove()
+        
+        results(){
+            console.log(`Player Won with ${this.moveCount}`)
+            rl.close()
+        }
+        
     }
-
-    results(){
-        console.log("end")
-        rl.close()
-    }
-
     // play(){
     //     (!this.gameOver){
     //         this.getMove()
     //     }
     // }
-}
 
 let towers = new Towers()
 
-// towers.play()
-towers.setDiscs()
 towers.getMove()
+// console.log(towers.rods)
 
+
+
+// Move 1: move disk 1 to post C
+// Move 2: move disk 2 to post B
+// Move 1: move disk 1 to post B
+// Move 4: move disk 3 to post C
+// Move 5: move disk 1 to post A
+// Move 6: move disk 2 to post C
+// Move 7: move disk 1 to post C
+// towers.move("A","C")
+// console.log(towers.rods)
+// towers.move("A","B")
+// console.log(towers.rods)
+// towers.move("C","B")
 // console.log(towers.rods)
 // towers.move("A","C")
-// towers.move("A","B")
 // console.log(towers.rods)
-// towers.move("B","C")
-// towers.move("C","A")
-// towers.move("A","B")
-// towers.move("A","B")
-// towers.move("B","C")
 // towers.move("B","A")
-
+// towers.move("B","C")
 // console.log(towers.rods)
-// console.log(towers.moveCount)
+// towers.move("A","C")
+// console.log(towers.rods)
+// towers.gameWon()
+
 
 
