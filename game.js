@@ -11,9 +11,6 @@ class Towers{
         this.gameOver = false
     }
 
-    // setDiscs(){
-    //     this.rods.A = [3,2,1]
-    // }
     isValidMove(oldRod,newRod){
         if(!this.rods[oldRod].length){
             return false
@@ -25,6 +22,7 @@ class Towers{
             return true
         }
     }
+
     move(oldRod,newRod){
         if(this.isValidMove(oldRod,newRod)){
             this.rods[newRod].push(this.rods[oldRod][(this.rods[oldRod]).length-1])
@@ -34,12 +32,14 @@ class Towers{
             console.log("Invalid Move")
             this.moveCount +=1
         }
-
     }
-    gameWon(){
-        if(this.rods["B"].length === 3 || this.rods["C"].length === 3){
-            this.gameOver = true
-        } 
+
+    gameWon() {
+        if (this.rods["B"].length === 3 || this.rods["C"].length === 3) {
+            return true
+        } else {
+            return false
+        }
     }
 
 
@@ -72,12 +72,11 @@ class Towers{
         
         results(){
             if(this.gameWon()){
-                console.log(`Player Won with ${this.moveCount} moves, THE BEST MOVES ARE 7 Steps`)
+                console.log(`Player Won with ${this.moveCount} moves, the BEST MOVES are 7 Steps`)
                 rl.close()
             } else {
-                console.log(`Player lost with ${this.moveCount} moves, THE BEST MOVES ARE 7 Steps`)
+                console.log(`Player lost with ${this.moveCount} moves, the BEST MOVES are 7 Steps`)
                 rl.close()
-
             }
         }
         
